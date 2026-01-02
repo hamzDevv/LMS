@@ -8,11 +8,13 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// database mysql
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
+// atribut user
 model User {
   id            String    @id @default(uuid())
   name          String
@@ -35,6 +37,7 @@ model User {
   @@map("users")
 }
 
+// atribut kategori untuk course
 model Category {
   id          String   @id @default(uuid())
   name        String
@@ -50,6 +53,7 @@ model Category {
   @@map("categories")
 }
 
+// atribut course
 model Course {
   id            String     @id @default(uuid())
   title         String
@@ -81,6 +85,7 @@ model Course {
   @@map("courses")
 }
 
+// course video
 model Lesson {
   id        String   @id @default(uuid())
   title     String
@@ -102,6 +107,7 @@ model Lesson {
   @@map("lessons")
 }
 
+// course article
 model Article {
   id          String   @id @default(uuid())
   title       String
@@ -128,6 +134,7 @@ model Article {
   @@map("articles")
 }
 
+// atribut tag
 model Tag {
   id        String   @id @default(uuid())
   name      String   @unique
@@ -139,6 +146,7 @@ model Tag {
   @@map("tags")
 }
 
+// article tag
 model ArticleTag {
   articleId String
   article   Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
@@ -150,6 +158,7 @@ model ArticleTag {
   @@map("article_tags")
 }
 
+// atrbut progres user
 model Enrollment {
   id          String    @id @default(uuid())
   progress    Int       @default(0)
@@ -168,6 +177,7 @@ model Enrollment {
   @@map("enrollments")
 }
 
+// atribut lesson progres user
 model LessonProgress {
   id          String    @id @default(uuid())
   isCompleted Boolean   @default(false)
@@ -186,6 +196,7 @@ model LessonProgress {
   @@map("lesson_progress")
 }
 
+// masa waktu bulanan, tahunan atau selamanya
 model Subscription {
   id        String             @id @default(uuid())
   plan      SubscriptionPlan
@@ -204,6 +215,7 @@ model Subscription {
   @@map("subscriptions")
 }
 
+// pembayaran
 model Payment {
   id            String        @id @default(uuid())
   amount        Decimal       @db.Decimal(10, 2)
@@ -225,6 +237,7 @@ model Payment {
   @@map("payments")
 }
 
+// roadmap untuk developer
 model Roadmap {
   id          String   @id @default(uuid())
   title       String
@@ -239,6 +252,7 @@ model Roadmap {
   @@map("roadmaps")
 }
 
+// roadmap course
 model RoadmapCourse {
   order Int
 
@@ -276,9 +290,8 @@ enum CourseType {
 
 enum SubscriptionPlan {
   MONTHLY
-  QUARTERLY
-  BIANNUAL
   ANNUAL
+  FOREVER
 }
 
 enum SubscriptionStatus {
