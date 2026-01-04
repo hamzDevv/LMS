@@ -115,15 +115,6 @@ export default function Login() {
                         Register here
                     </a>
                 </p>
-                <p className="text-center text-gray-600 mt-2">
-                    Forgot your password?{" "}
-                    <a
-                        href="/forgot-password"
-                        className="text-blue-600 hover:underline"
-                    >
-                        Reset it here
-                    </a>
-                </p>
             </div>
         </div>
     );
