@@ -6,109 +6,111 @@ import { useRouter } from "next/navigation";
 import { handleForgotPassword } from "@/actions/auth-action";
 
 export default function ForgotPassword() {
-  // State for email input, messages, and loading status
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
+    // State for email input, messages, and loading status
+    const [email, setEmail] = useState("");
+    const [message, setMessage] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const router = useRouter();
 
-  // Handle form submission for password reset request
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setMessage(null);
+    // Handle form submission for password reset request
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsLoading(true);
+        setMessage(null);
 
-    try {
-      // Call the forgot password action
-      const result = await handleForgotPassword(email);
-      setMessage(result.message);
-      
-      // Redirect to login after a delay to allow user to see the message
-      setTimeout(() => {
-        router.push("/login");
-      }, 3000);
-    } catch (error) {
-      setMessage("An error occurred. Please try again.");
-    } finally {
-      setIsLoading(false);
-    }
-  };
+        try {
+            // Call the forgot password action
+            const result = await handleForgotPassword(email);
+            setMessage(result.message);
 
-  return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center p-4">
-      <div className="bg-white rounded-lg shadow-2xl p-8 w-full max-w-md">
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
-          Forgot Password
-        </h2>
-        
-        {/* Display message if available */}
-        {message && (
-          <div className={`p-4 rounded mb-6 ${
-            message.includes("receive") 
-              ? "bg-blue-100 border border-blue-400 text-blue-700" 
-              : "bg-red-100 border border-red-400 text-red-700"
-          }`}>
-            {message}
-          </div>
-        )}
-        
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Email
-            </label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
-              placeholder="Enter your email"
-              required
-            />
-          </div>
-          
-          <button
-            type="submit"
-            className="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition duration-300 flex items-center justify-center"
-            disabled={isLoading}
-          >
-            {isLoading ? (
-              <div className="flex items-center">
-                <svg
-                  className="animate-spin h-5 w-5 mr-3 text-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  ></circle>
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                  ></path>
-                </svg>
-                Sending...
-              </div>
-            ) : (
-              "Send Reset Link"
-            )}
-          </button>
-        </form>
-        
-        <p className="text-center text-gray-600 mt-6">
-          Remember your password?{" "}
-          <a href="/login" className="text-blue-600 hover:underline">
-            Login here
-          </a>
-        </p>
-      </div>
-    </div>
-  );
+            // Redirect to login after a delay to allow user to see the message
+            setTimeout(() => {
+                router.push("/login");
+            }, 3000);
+        } catch (error) {
+            setMessage("An error occurred. Please try again.");
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    return (
+        <div className="min-h-screen flex items-center justify-center p-4">
+            <div className="bg-gray-900 rounded-lg shadow-2xl p-8 w-full max-w-md">
+                <h2 className="text-3xl font-bold text-center text-gray-300 mb-8">
+                    Forgot Password
+                </h2>
+
+                {/* Display message if available */}
+                {message && (
+                    <div
+                        className={`p-4 rounded mb-6 ${
+                            message.includes("receive")
+                                ? "bg-blue-100 border border-blue-400 text-blue-700"
+                                : "bg-red-100 border border-red-400 text-red-700"
+                        }`}
+                    >
+                        {message}
+                    </div>
+                )}
+
+                <form onSubmit={handleSubmit} className="space-y-6">
+                    <div>
+                        <label className="block text-sm font-medium text-gray-300 mb-2">
+                            Email
+                        </label>
+                        <input
+                            type="email"
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
+                            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-300"
+                            placeholder="Enter your email"
+                            required
+                        />
+                    </div>
+
+                    <button
+                        type="submit"
+                        className="font-bold w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition duration-300 flex items-center justify-center"
+                        disabled={isLoading}
+                    >
+                        {isLoading ? (
+                            <div className="flex items-center">
+                                <svg
+                                    className="animate-spin h-5 w-5 mr-3 text-white"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <circle
+                                        className="opacity-25"
+                                        cx="12"
+                                        cy="12"
+                                        r="10"
+                                        stroke="currentColor"
+                                        strokeWidth="4"
+                                    ></circle>
+                                    <path
+                                        className="opacity-75"
+                                        fill="currentColor"
+                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                    ></path>
+                                </svg>
+                                Sending...
+                            </div>
+                        ) : (
+                            "Send Reset Link"
+                        )}
+                    </button>
+                </form>
+
+                <p className="text-center text-gray-600 mt-6">
+                    Remember your password?{" "}
+                    <a href="/login" className="text-blue-600 hover:underline">
+                        Login here
+                    </a>
+                </p>
+            </div>
+        </div>
+    );
 }

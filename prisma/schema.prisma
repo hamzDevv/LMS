@@ -11,19 +11,19 @@ generator client {
 // database mysql
 datasource db {
   provider = "postgresql"
-  url       = env("DATABASE_URL")
+  url      = env("DATABASE_URL")
 }
 
 // atribut user
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  password  String
-  resetToken String? // Tambahkan field ini
+  id             Int      @id @default(autoincrement())
+  email          String   @unique
+  password       String
+  resetToken     String? // Tambahkan field ini
   resetTokenUsed Boolean  @default(false) // Menandai apakah token sudah digunakan
-  role            Role      @default(USER)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  role           Role     @default(USER)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }
 
 // Enum yang lebih baik
