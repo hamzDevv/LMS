@@ -77,21 +77,15 @@ const getProfileMenuItems = (role: string) => {
     case "ADMIN":
       return [
         { name: "Your Profile", href: "./app/admin/profile" },
-        { name: "Settings", href: "./app/admin/settings" },
-        { name: "Admin Dashboard", href: "./app/admin" },
       ];
     case "TEACHER":
       return [
         { name: "Your Profile", href: "./app/teacher/profile" },
-        { name: "Settings", href: "./app/teacher/settings" },
-        { name: "My Courses", href: "./app/teacher/courses" },
       ];
     case "USER":
     default:
       return [
         { name: "Your Profile", href: "./app/user/profile" },
-        { name: "Settings", href: "./app/user/settings" },
-        { name: "My Courses", href: "./app/user/courses" },
       ];
   }
 };

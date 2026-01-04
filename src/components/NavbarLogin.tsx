@@ -93,24 +93,6 @@ export default function NavbarLogin() {
                     </div>
                     <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                         {/* Search form container */}
-                        <form onSubmit={handleSearch} className="relative mr-4">
-                            {/* Search icon container - positioned inside the input field */}
-                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                {/* Magnifying glass icon for search */}
-                                <MagnifyingGlassIcon
-                                    className="h-5 w-5 text-gray-400"
-                                    aria-hidden="true"
-                                />
-                            </div>
-                            {/* Search input field with state binding */}
-                            <input
-                                type="text" // Text input type
-                                value={searchQuery} // Controlled input bound to state
-                                onChange={e => setSearchQuery(e.target.value)} // Update state on change
-                                className="block w-full pl-10 pr-3 py-2 border border-transparent rounded-md leading-5 bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:bg-gray-600 focus:ring-2 focus:ring-indigo-500 sm:text-sm"
-                                placeholder="Search..." // Placeholder text
-                            />
-                        </form>
 
                         {/* Login buttons for non-authenticated users */}
                         <div className="flex space-x-2">
