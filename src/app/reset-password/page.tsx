@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { handleResetPassword } from "@/app/actions/auth-action";
-import { validateResetToken } from "@/app/actions/auth-action";
+import { handleResetPassword } from "@./actions/auth-action";
+import { validateResetToken } from "@./actions/auth-action";
 
 export default function ResetPassword() {
   const router = useRouter();
