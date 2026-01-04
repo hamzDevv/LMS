@@ -1,8 +1,7 @@
 "use client"; // Pastikan ini ada karena kita menggunakan state
 
 import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { handleResetPassword } from "@/actions/auth-action";
 import { validateResetToken } from "@/actions/auth-action";
 
